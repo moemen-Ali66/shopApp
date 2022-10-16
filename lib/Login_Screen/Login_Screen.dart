@@ -12,9 +12,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           Text('LOGIN',style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),),
           Text('login now to browse our hot offers',style: TextStyle(fontSize: 10,color:defultcolor ),),
-          TextFormField(
 
-          )
         ],
       ) ,
     );
