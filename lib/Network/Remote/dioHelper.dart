@@ -26,7 +26,13 @@ class DioHelper{
       {
         required String url ,
         required Map<String,dynamic> ? data,
+        String lang ='ar',
+         token,
       })async{
+    dio?.options.headers={
+      'lang':lang,
+      'authorization':token
+    };
     return await dio!.post(
         url,data:data
     );

@@ -26,4 +26,9 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>{
       emit(ShopLoginErrorStates(Error.toString()));
     });
   }
+  bool showpassword=true;
+   void changeSufix(){
+    showpassword=!showpassword;
+    emit(ChangePasswordStates());
+  }
 }

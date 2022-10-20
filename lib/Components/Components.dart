@@ -9,6 +9,7 @@ Widget defultTextForm(
    onTab,
    sufixIcon,
   hintText,
+  sufixPressed,
   required TextEditingController controller,
   required String label,
   required Icon prefixIcon,
@@ -16,6 +17,7 @@ Widget defultTextForm(
  bool ispassword=false,
 }
     )=>TextFormField(
+
   validator: validate,
   onTap:onTab ,
   onChanged: onChanged,
@@ -34,6 +36,7 @@ Widget defultTextForm(
     hintText: hintText,
     hintStyle: TextStyle(backgroundColor: Colors.white10),
     border: OutlineInputBorder(),
+
   ),
 );
 //////////////////////////////////defultButton/////////////////////////////////////////////
