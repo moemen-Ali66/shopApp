@@ -44,9 +44,9 @@ class LoginScreen extends StatelessWidget {
                       height: 20,
                     ),
                     defultTextForm(
-                      sufixPressed: (){
-                      ShopLoginCubit.get(context).changeSufix;
-                      },
+                      // sufixPressed: (){
+                      // ShopLoginCubit.get(context).changeSufix;
+                      // },
                         controller: passController,
                         validate:(String? value){
                           if(value!.isEmpty){
