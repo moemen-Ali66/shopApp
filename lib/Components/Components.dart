@@ -4,7 +4,6 @@ import 'package:shop_app/Style/Colors.dart';
 Widget defultTextForm(
 {
    validate ,
-   onSubmitted,
    onChanged,
    onTab,
    sufixIcon,
@@ -21,8 +20,6 @@ Widget defultTextForm(
   validator: validate,
   onTap:onTab ,
   onChanged: onChanged,
-  onFieldSubmitted: onSubmitted,
-  controller:controller ,
   keyboardType:keyboardType ,
   obscureText:ispassword ,
   decoration: InputDecoration(

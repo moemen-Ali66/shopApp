@@ -52,14 +52,6 @@ class LoginScreen extends StatelessWidget {
                           if(value!.isEmpty){
                             return'The password Can\'t Empty';
                           }} ,
-                        // onSubmitted: (){
-                        //   if(formkey.currentState!.validate()){
-                        //     ShopLoginCubit.get(context).userLogin(
-                        //         email:mailController.text ,
-                        //         password:passController.text );
-                        //   }
-                        // },
-
                         ispassword: ShopLoginCubit.get(context).showpassword,
                         label: 'Password',
                         prefixIcon:Icon(Icons.lock),
@@ -98,7 +90,9 @@ class LoginScreen extends StatelessWidget {
         ) ,
       ),
       listener: (BuildContext context, state){
-        //fuck you indomy
+        if(state is ShopLoginSuccessStates){
+          if(state.loginModel){}
+        }
       },
 
     );
