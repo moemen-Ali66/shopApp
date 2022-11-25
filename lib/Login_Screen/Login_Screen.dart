@@ -1,9 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/Components/Components.dart';
+import 'package:shop_app/HomeLayout/homeLayout.dart';
 import 'package:shop_app/Login_Screen/Login_Cubit/cubit.dart';
 import 'package:shop_app/Login_Screen/Login_Cubit/states.dart';
+import 'package:shop_app/Network/Local/Cache_helper.dart';
 import 'package:shop_app/Register_Screen/RegisterScreen.dart';
 import 'package:shop_app/Style/Colors.dart';
 
@@ -91,7 +94,16 @@ class LoginScreen extends StatelessWidget {
       ),
       listener: (BuildContext context, state){
         if(state is ShopLoginSuccessStates){
-          if(state.loginModel){}
+          if(state.loginModel.status==true){
+            // print(state.loginModel.message);
+            // print(state.loginModel.data!.token);
+            CacheHelper.saveData(Key: 'token', value:state.loginModel.data!.token).then((value) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ShopLayout()));
+            });
+
+          }else{
+          toast(color: Colors.red, text: '${state.loginModel.message}');
+          }
         }
       },
 

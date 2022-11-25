@@ -20,17 +20,6 @@ class UserData{
   String? image;
   String? token;
 
-//   UserData({
-//     this.image,
-//     this.credit,
-//     this.email,
-//     this.id,
-//     this.name,
-//     this.phone,
-//     this.points,
-//     this.token,
-//
-// });
   //named constructor
 UserData.fromJson(Map<String,dynamic> json){
   image=json['image'];
@@ -43,4 +32,15 @@ UserData.fromJson(Map<String,dynamic> json){
   token=json['token'];
 }
 
+//   UserData({
+//     this.image,
+//     this.credit,
+//     this.email,
+//     this.id,
+//     this.name,
+//     this.phone,
+//     this.points,
+//     this.token,
+//
+// });
 }

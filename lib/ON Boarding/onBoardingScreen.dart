@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/Login_Screen/Login_Screen.dart';
+import 'package:shop_app/Network/Local/Cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingModel{
@@ -21,6 +22,14 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
 
   bool isLast=false;
 
+  void submit (){
+    CacheHelper.saveData(Key: 'boarding', value:true ).then((value) {
+      if(value){
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context)=>LoginScreen()));
+      }
+    });
+  }
 List<BoardingModel>boarding=[
   BoardingModel(title: 'BoardingTitle_1', body: 'BoardingBody_1', image: 'images/onBoard_1.jpg'),
   BoardingModel(title: 'BoardingTitle_2', body: 'BoardingBody_2', image: 'images/onBoard_2.jpg'),
@@ -34,7 +43,9 @@ List<BoardingModel>boarding=[
           title:Text('ShopApp') ,
           actions: [
             TextButton(onPressed: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));            }, child: Text('Skip',style: TextStyle(color: Colors.white,fontSize: 24)),)
+            submit();
+              },
+              child: Text('Skip',style: TextStyle(color: Colors.white,fontSize: 24)),)
           ],
         ),
       body:Padding(
@@ -55,6 +66,7 @@ List<BoardingModel>boarding=[
             ),
             Row(
               children: [
+                //لخطوط بتاعت البوردينج بتاعت الصفحات
                 SmoothPageIndicator(
                   controller: boardController,
                   count: boarding.length,
@@ -62,7 +74,7 @@ List<BoardingModel>boarding=[
                 Spacer(),
                 FloatingActionButton(onPressed: (){
                   if(isLast){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                    submit();
                   }else{
                     boardController.nextPage(duration:Duration(seconds: 1),curve: Curves.easeInOutCubicEmphasized);
                   }

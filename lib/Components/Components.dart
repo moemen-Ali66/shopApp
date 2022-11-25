@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shop_app/Login_Screen/Login_Screen.dart';
+import 'package:shop_app/Network/Local/Cache_helper.dart';
 import 'package:shop_app/Style/Colors.dart';
 ///////////////////////////////defultTextForm//////////////////////////
 Widget defultTextForm(
@@ -47,3 +50,22 @@ Widget defultButton({
     child:
     TextButton(onPressed: onPressed,
       child: Text(label,style: TextStyle(color:Colors.white,fontSize: 20),),));
+//////////////////////////////////ToastFLutter//////////////////////////////////////
+void toast({
+  required Color color,
+  required String text,
+})=>   Fluttertoast.showToast(
+    msg: text,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 5,
+    backgroundColor: color,
+    textColor: Colors.white,
+    fontSize: 16.0
+);
+/////////////////////////////////////SIGNOUT////////////////////////
+void signOut(context)=> CacheHelper.removeData(Key: 'token').then((value){
+if(value){
+Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LoginScreen()));
+}
+});

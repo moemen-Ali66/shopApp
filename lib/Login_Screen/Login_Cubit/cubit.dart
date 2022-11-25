@@ -4,13 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Network/Remote/dioHelper.dart';
 import 'package:shop_app/Network/end_points.dart';
 import 'package:shop_app/models/LoginModel.dart';
-
 class ShopLoginCubit extends Cubit<ShopLoginStates>{
   // ShopLoginCubit(super.ShopLoginInitialStates);
 
 
   ShopLoginCubit():super(ShopLoginInitialStates());
-ShopLoginModel ? loginModel;
+  ShopLoginModel ? loginModel;
   static ShopLoginCubit get(context)=>BlocProvider.of(context);
 
   void userLogin({
