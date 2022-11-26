@@ -14,9 +14,9 @@ void main()async {
   await CacheHelper.init();
   // bool isdark=CacheHelper.GetData(Key: "isdark")??false;
   Widget? widget;
-  bool? onboarding=CacheHelper.GetData(Key: "boarding");
+  bool onboarding=CacheHelper.GetData(Key: "boarding")??true;
   String ?token=CacheHelper.GetData(Key: "token");
-  if(onboarding == true){
+  if(onboarding != null ){
     if(token != null ){
       widget=ShopLayout();
     }
@@ -27,7 +27,7 @@ void main()async {
     widget=onBoardingScreen();
   }
 
-  runApp( MyApp(widget,onboarding!,));
+  runApp( MyApp(widget,onboarding,));
 }
 class MyApp extends StatelessWidget {
   final Widget widget;
