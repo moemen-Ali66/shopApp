@@ -14,9 +14,9 @@ void main()async {
   await CacheHelper.init();
   // bool isdark=CacheHelper.GetData(Key: "isdark")??false;
   Widget? widget;
-  bool onboarding=CacheHelper.GetData(Key: "boarding")??true;
-  String ?token=CacheHelper.GetData(Key: "token");
-  if(onboarding != null ){
+  bool  onboarding=CacheHelper.GetData(Key: 'boarding')??false;
+  String ?token=CacheHelper.GetData(Key: 'token');
+  if(onboarding ==true ){
     if(token != null ){
       widget=ShopLayout();
     }
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: defultcolor,),
         primarySwatch: Colors.brown,
         ),
-        home:onBoardingScreen(),
+        home:widget,
       ),
     );
   }
