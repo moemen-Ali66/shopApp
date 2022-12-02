@@ -5,6 +5,7 @@ import 'package:shop_app/Login_Screen/Login_Cubit/cubit.dart';
 import 'package:shop_app/Login_Screen/Login_Screen.dart';
 import 'package:shop_app/Network/Local/Cache_helper.dart';
 import 'package:shop_app/Network/Remote/dioHelper.dart';
+import 'package:shop_app/cubit/Cubit.dart';
 import 'ON Boarding/onBoardingScreen.dart';
 import 'Style/Colors.dart';
 void main()async {
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context)=>ShopLoginCubit()),
+        BlocProvider(create: (context)=>ShopCubit()..getHomeData()),
       ],
       child: MaterialApp(
 
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
           floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: defultcolor,),
         primarySwatch: Colors.brown,
         ),
-        home:widget,
+        home:ShopLayout(),
       ),
     );
   }

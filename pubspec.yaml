@@ -43,7 +43,6 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   fluttertoast: ^8.1.1
   shared_preferences: ^2.0.15
-  curved_nav_bar: ^0.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

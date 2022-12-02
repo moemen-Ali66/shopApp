@@ -13,8 +13,8 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>{
   static ShopLoginCubit get(context)=>BlocProvider.of(context);
 
   void userLogin({
-    required email,
-    required password,
+    required String email,
+    required String password,
   }){
     emit(ShopLoginLoadingStates());
     DioHelper.postData(url:LOGIN, data: {
@@ -24,10 +24,11 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>{
       loginModel=ShopLoginModel.fromJson(value.data);
       print(loginModel?.data?.token);
       // print(loginModel?.status);
-      // print(loginModel?.message);
+      print(loginModel?.message);
       emit(ShopLoginSuccessStates(loginModel!));
     }).catchError((Error){
       emit(ShopLoginErrorStates(Error.toString()));
+      print(Error.toString());
     });
   }
   bool showpassword=true;

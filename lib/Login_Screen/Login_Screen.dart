@@ -18,6 +18,20 @@ class LoginScreen extends StatelessWidget {
     var mailController=TextEditingController();
     var passController=TextEditingController();
     return BlocConsumer<ShopLoginCubit,ShopLoginStates>(
+      listener: (BuildContext context, state){
+        if(state is ShopLoginSuccessStates){
+          if(state.loginModel.status==true){
+            print(state.loginModel.message);
+            // print(state.loginModel.data!.token);
+            CacheHelper.saveData(Key: 'token', value:state.loginModel.data!.token).then((value) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ShopLayout()));
+            });
+
+          }else{
+            toast(color: Colors.red, text: '${state.loginModel.message}');
+          }
+        }
+      },
       builder: (BuildContext context, state) =>Scaffold(
         appBar: AppBar(),
         body:Center(
@@ -92,21 +106,6 @@ class LoginScreen extends StatelessWidget {
           ),
         ) ,
       ),
-      listener: (BuildContext context, state){
-        if(state is ShopLoginSuccessStates){
-          if(state.loginModel.status==true){
-            print(state.loginModel.message);
-            // print(state.loginModel.data!.token);
-            CacheHelper.saveData(Key: 'token', value:state.loginModel.data!.token).then((value) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ShopLayout()));
-            });
-
-          }else{
-          toast(color: Colors.red, text: '${state.loginModel.message}');
-          }
-        }
-      },
-
     );
   }
 }
