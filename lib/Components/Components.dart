@@ -69,3 +69,18 @@ if(value){
 Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LoginScreen()));
 }
 });
+/////////
+//     bottomNavigationBar: BottomNavigationBar(
+//   backgroundColor:Colors.brown,
+//     unselectedItemColor:Colors.grey,
+//     selectedItemColor:Colors.brown,
+//   items: [
+//   BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+//   BottomNavigationBarItem(icon: Icon(Icons.apps),label: 'Categories'),
+//   BottomNavigationBarItem(icon: Icon(Icons.favorite),label: 'Favorite'),
+//   BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
+// ],
+//   currentIndex: cubit.Curentindex,
+//   onTap: (index){
+//     cubit.changeScreen(index);
+//   },),

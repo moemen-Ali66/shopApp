@@ -1,3 +1,5 @@
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Login_Screen/Login_Screen.dart';
@@ -20,21 +22,36 @@ class ShopLayout extends StatelessWidget {
           IconButton(onPressed: (){}, icon: Icon(Icons.brightness_4_outlined)),
         ],
       ),
+          bottomNavigationBar: CurvedNavigationBar(
+            backgroundColor: Colors.white,
+            color: Colors.brown,
+            animationCurve: Curves.easeIn,
+            animationDuration: Duration(milliseconds: 200),
+            items: const[
+              CurvedNavigationBarItem(
+                child: Icon(Icons.home_outlined,),
+                label: 'Home',
+              ),
+              CurvedNavigationBarItem(
+                child: Icon(Icons.apps),
+                label: 'Categories',
+              ),
+              CurvedNavigationBarItem(
+                child: Icon(Icons.favorite),
+                label: 'Favorite',
+              ),
+              CurvedNavigationBarItem(
+                child: Icon(Icons.settings),
+                label: 'Settings',
+              ),
+            ],
+            index: cubit.Curentindex,
+              onTap: (index){
+                cubit.changeScreen(index);
+              },
+          ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:Colors.brown,
-          unselectedItemColor:Colors.grey,
-          selectedItemColor:Colors.brown,
-        items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.apps),label: 'Categories'),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite),label: 'Favorite'),
-        BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
-      ],
-        currentIndex: cubit.Curentindex,
-        onTap: (index){
-          cubit.changeScreen(index);
-        },),
+
       body: cubit.Screens[cubit.Curentindex],
     );},
         listener: (context,state){});

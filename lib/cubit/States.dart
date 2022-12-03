@@ -9,6 +9,5 @@ class ShopLoadingHomeState extends ShopStates{}
 class ShopSuccessHomeState extends ShopStates{}
 
 class ShopErrorHomeState extends ShopStates{
-final String error;
-ShopErrorHomeState(this.error);
+  ShopErrorHomeState(error);
 }
