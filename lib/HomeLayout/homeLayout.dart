@@ -22,35 +22,7 @@ class ShopLayout extends StatelessWidget {
           IconButton(onPressed: (){}, icon: Icon(Icons.brightness_4_outlined)),
         ],
       ),
-          bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: Colors.white,
-            color: Colors.brown,
-            animationCurve: Curves.easeIn,
-            animationDuration: Duration(milliseconds: 200),
-            items: const[
-              CurvedNavigationBarItem(
-                child: Icon(Icons.home_outlined,),
-                label: 'Home',
-              ),
-              CurvedNavigationBarItem(
-                child: Icon(Icons.apps),
-                label: 'Categories',
-              ),
-              CurvedNavigationBarItem(
-                child: Icon(Icons.favorite),
-                label: 'Favorite',
-              ),
-              CurvedNavigationBarItem(
-                child: Icon(Icons.settings),
-                label: 'Settings',
-              ),
-            ],
-            index: cubit.Curentindex,
-              onTap: (index){
-                cubit.changeScreen(index);
-              },
-          ),
-
+          bottomNavigationBar: cubit.BottomNav(),
 
       body: cubit.Screens[cubit.Curentindex],
     );},
