@@ -46,10 +46,16 @@ Widget productItem(HomeModel model)=>Column(
           crossAxisCount:2,
           children:List.generate(
               model.data!.products.length,
-                  (index) => builderproduct())
-          ,
+                  (index) => builderproduct(model.data!.products[index])),
     ))
   ],
 );
 
-Widget builderproduct()=>Column();
+Widget builderproduct(ProductModel model)=>Column(
+  children: [
+    Image(image: NetworkImage(model.image!),
+    width: double.infinity,
+    fit: BoxFit.cover,),
+
+  ],
+);
