@@ -44,6 +44,7 @@ dependencies:
   fluttertoast: ^8.1.1
   shared_preferences: ^2.0.15
   curved_labeled_navigation_bar: ^2.0.2
+  carousel_slider: ^4.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
