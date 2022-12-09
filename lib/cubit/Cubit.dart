@@ -61,6 +61,9 @@ void getHomeData(){
     url: HOME,
     token: token,
   ).then((value) {
+    print(homeModel!.data!.banners![0].image);
+    print(homeModel!.status);
+    print('{$value}');
     homeModel=HomeModel.fromJson(value.data);
     emit(ShopSuccessHomeState());
   }).catchError((error){

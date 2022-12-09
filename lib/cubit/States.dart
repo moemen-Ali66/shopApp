@@ -8,5 +8,4 @@ class ShopLoadingHomeState extends ShopStates{}
 
 class ShopSuccessHomeState extends ShopStates{}
 
-class ShopErrorHomeState extends ShopStates{
-}
+class ShopErrorHomeState extends ShopStates{}

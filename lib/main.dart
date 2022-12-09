@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/HomeLayout/homeLayout.dart';
@@ -9,7 +12,6 @@ import 'package:shop_app/cubit/Cubit.dart';
 import 'ON Boarding/onBoardingScreen.dart';
 import 'Style/Colors.dart';
 void main()async {
-
   WidgetsFlutterBinding.ensureInitialized();// when fun main is async..
   DioHelper.init();
   await CacheHelper.init();
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>ShopLoginCubit()),
+        // BlocProvider(create: (context)=>ShopLoginCubit()),
         BlocProvider(create: (context)=>ShopCubit()..getHomeData()),
       ],
       child: MaterialApp(
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
           floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: defultcolor,),
         primarySwatch: Colors.brown,
         ),
-        home:ShopLayout(),
+        home:widget,
       ),
     );
   }

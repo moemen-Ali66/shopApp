@@ -9,29 +9,32 @@ import 'package:shop_app/Login_Screen/Login_Cubit/states.dart';
 import 'package:shop_app/Network/Local/Cache_helper.dart';
 import 'package:shop_app/Register_Screen/RegisterScreen.dart';
 import 'package:shop_app/Style/Colors.dart';
+import 'package:shop_app/models/HomeModel.dart';
 
 class LoginScreen extends StatelessWidget {
-
- var formkey=GlobalKey<FormState>();
+  var mailController=TextEditingController();
+  var passController=TextEditingController();
+  var formkey=GlobalKey<FormState>();
   @override
-  Widget build(BuildContext context) {
-    var mailController=TextEditingController();
-    var passController=TextEditingController();
-    return BlocConsumer<ShopLoginCubit,ShopLoginStates>(
-      listener: (BuildContext context, state){
-        if(state is ShopLoginSuccessStates){
-          if(state.loginModel.status==true){
-            print(state.loginModel.message);
-            // print(state.loginModel.data!.token);
-            CacheHelper.saveData(Key: 'token', value:state.loginModel.data!.token).then((value) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ShopLayout()));
-            });
 
-          }else{
-            toast(color: Colors.red, text: '${state.loginModel.message}');
-          }
-        }
-      },
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create:(context)=>ShopLoginCubit(),
+    child: BlocConsumer<ShopLoginCubit,ShopLoginStates>(
+        listener: (BuildContext context, state){
+    if(state is ShopLoginSuccessStates){
+    if(state.loginModel.status==true){
+    print(state.loginModel.message);
+    print(state.loginModel.data!.token);
+    CacheHelper.saveData(Key: 'token', value:state.loginModel.data!.token).then((value) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ShopLayout()));
+    });
+
+    }else{
+    toast(color: Colors.red, text: '${state.loginModel.message}');
+    }
+    }
+    },
       builder: (BuildContext context, state) =>Scaffold(
         appBar: AppBar(),
         body:Center(
@@ -83,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                         builder:(context) =>defultButton(label: 'LOGIN', onPressed: (){
                           if(formkey.currentState!.validate()){
                             ShopLoginCubit.get(context).userLogin(
-                                email:mailController.text ,
+                                email:mailController.text  ,
                                 password:passController.text );
                           }
 
@@ -106,6 +109,6 @@ class LoginScreen extends StatelessWidget {
           ),
         ) ,
       ),
-    );
+    ),);
   }
 }

@@ -20,6 +20,7 @@ Widget defultTextForm(
 }
     )=>TextFormField(
 
+  controller:controller,
   validator: validate,
   onTap:onTab ,
   onChanged: onChanged,
