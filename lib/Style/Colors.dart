@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-Color defultcolor=  Colors.brown;
+Color defultcolor=  Colors.deepPurple;

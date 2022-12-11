@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Network/Remote/dioHelper.dart';
 import 'package:shop_app/Network/constant.dart';
 import 'package:shop_app/Network/end_points.dart';
+import 'package:shop_app/Style/Colors.dart';
 import 'package:shop_app/cubit/States.dart';
 import 'package:shop_app/models/HomeModel.dart';
 import '../CategoriesScreen/CategoriesScreen.dart';
 import '../FavouriteScreen/FavouriteScreen.dart';
 import '../ProductsScreen/ProductsScreen.dart';
+import 'dart:developer';
 import '../SettingsScreen/SettingsScreen.dart';
 class ShopCubit extends Cubit<ShopStates>
 {
@@ -28,7 +30,7 @@ void changeScreen(int index){
 }
 dynamic BottomNav()=>CurvedNavigationBar(
   backgroundColor: Colors.white,
-  color: Colors.brown,
+  color: defultcolor,
   animationCurve: Curves.easeIn,
   animationDuration: Duration(milliseconds: 200),
   items: const[
@@ -54,21 +56,20 @@ dynamic BottomNav()=>CurvedNavigationBar(
    changeScreen(index);
   },
 );
-  HomeModel ?homeModel;
+  HomeModel homeModel=HomeModel();
 void getHomeData(){
   emit(ShopLoadingHomeState());
   DioHelper.getData(
     url: HOME,
     token: token,
   ).then((value) {
-    print(homeModel!.data!.banners![0].image);
-    print(homeModel!.status);
-    print('{$value}');
+    //log('${value}');
+    // print(homeModel.data!.banners[0].image);
+    // print(homeModel.status);
     homeModel=HomeModel.fromJson(value.data);
+    // log(homeModel.data.toString());
+    // print(value);
     emit(ShopSuccessHomeState());
-  }).catchError((error){
-    print(error.toString());
-    emit(ShopErrorHomeState());
   });
 }
 
