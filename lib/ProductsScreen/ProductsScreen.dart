@@ -82,7 +82,10 @@ class ProductScreen extends StatelessWidget {
             model.name!,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
+            style: TextStyle(height: 1.5),
+
           ),
+          Spacer(),
           Row(
             children: [
               Text(
