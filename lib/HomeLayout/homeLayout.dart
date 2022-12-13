@@ -15,6 +15,7 @@ class ShopLayout extends StatelessWidget {
     return BlocConsumer<ShopCubit,ShopStates>(
         builder: (context,state){return Scaffold(
       appBar: AppBar(
+        title:  Text('S h o p y ☺',style: TextStyle(fontSize: 25),),
         actions: [
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchScreen(),));

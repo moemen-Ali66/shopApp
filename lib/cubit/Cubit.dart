@@ -7,6 +7,7 @@ import 'package:shop_app/Network/constant.dart';
 import 'package:shop_app/Network/end_points.dart';
 import 'package:shop_app/Style/Colors.dart';
 import 'package:shop_app/cubit/States.dart';
+import 'package:shop_app/models/CategoriesModel.dart';
 import 'package:shop_app/models/HomeModel.dart';
 import '../CategoriesScreen/CategoriesScreen.dart';
 import '../FavouriteScreen/FavouriteScreen.dart';
@@ -57,20 +58,37 @@ dynamic BottomNav()=>CurvedNavigationBar(
   },
 );
   HomeModel homeModel=HomeModel();
-void getHomeData(){
-  emit(ShopLoadingHomeState());
-  DioHelper.getData(
-    url: HOME,
-    token: token,
-  ).then((value) {
-    //log('${value}');
-    // print(homeModel.data!.banners[0].image);
-    // print(homeModel.status);
-    homeModel=HomeModel.fromJson(value.data);
-    // log(homeModel.data.toString());
-    // print(value);
-    emit(ShopSuccessHomeState());
-  });
-}
+  void getHomeData(){
+    emit(ShopLoadingHomeState());
+    DioHelper.getData(
+      url: HOME,
+      token: token,
+    ).then((value) {
+      //log('${value}');
+      // print(homeModel.data!.banners[0].image);
+      // print(homeModel.status);
+      homeModel=HomeModel.fromJson(value.data);
+      // log(homeModel.data.toString());
+      // print(value);
+      emit(ShopSuccessHomeState());
+    });
+  }
+
+  CategoryModel categoryModel=CategoryModel();
+
+  // CategoryModel ?categoryModel;
+  void getCategoryData(){
+    emit(ShopLoadingHomeState());
+    DioHelper.getData(
+      url: CATEGORY,
+      token: token,
+    ).then((value) {
+      categoryModel=CategoryModel.fromJson(value.data);
+      log(categoryModel.data.toString());
+      emit(ShopSuccessCategoryState());
+    }).catchError((Error){
+      emit(ShopErrorCategoryState());
+    });
+  }
 
 }

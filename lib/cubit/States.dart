@@ -9,3 +9,7 @@ class ShopLoadingHomeState extends ShopStates{}
 class ShopSuccessHomeState extends ShopStates{}
 
 class ShopErrorHomeState extends ShopStates{}
+
+class ShopSuccessCategoryState extends ShopStates{}
+
+class ShopErrorCategoryState extends ShopStates{}
