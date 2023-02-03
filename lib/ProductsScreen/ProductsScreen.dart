@@ -15,94 +15,100 @@ class ProductScreen extends StatelessWidget {
     return BlocConsumer<ShopCubit, ShopStates>(
       listener: (context, state) => {},
       builder: (context, state) => ConditionalBuilder(
-          condition: mycubit.homeModel != null ,
-          builder: (context) =>
-              productItem(mycubit.homeModel),
+          condition: mycubit.homeModel != null,
+          builder: (context) => productItem(mycubit.homeModel),
           fallback: (context) => const Center(
                 child: CircularProgressIndicator(),
               )),
     );
   }
 
-  Widget productItem(HomeModel model) =>
-      SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CarouselSlider(
-                  items: model.data!.banners
-                      .map((e) => Image(
-                            image: NetworkImage('${e.image}'),
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ))
-                      .toList(),
-                  options: CarouselOptions(
-                    height: 250.0,
-                    initialPage: 0,
-                    viewportFraction: 1.0,
-                    reverse: false,
-                    enableInfiniteScroll: true,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration: const Duration(seconds: 1),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    scrollDirection: Axis.horizontal,
-                  )),
-              const SizedBox(height: 20),
-              Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
+  Widget productItem(HomeModel model) => SingleChildScrollView(
+      physics:  BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CarouselSlider(
+              // items: model!.data!.banners
+              //     .map((e) => Image(
+              //           image: NetworkImage('${e.image}'),
+              //           width: double.infinity,
+              //           fit: BoxFit.cover,
+              //         ))
+              //     .toList(),
+            items: [
+
+                   Image(
+                image: AssetImage('images/onBoard_1.jpg'),
                 width: double.infinity,
-                height: 100,
-                child: ListView.separated(
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) =>categoryItem(),
-                    separatorBuilder: (context, index) => SizedBox(
-                          width: 10,
-                        ),
-                    itemCount: 10),
-              ),
-              Text(
-                'New Products',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              GridView.count(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                crossAxisSpacing: 1,
-                mainAxisSpacing: 1,
-                crossAxisCount: 2,
-                childAspectRatio: 1 / 1.5,
-                children: List.generate(model.data!.products.length,
-                    (index) => builderproduct(model.data!.products[index])),
+                fit: BoxFit.cover,
               )
             ],
-          ));
+              options: CarouselOptions(
+                height: 250.0,
+                initialPage: 0,
+                viewportFraction: 1.0,
+                reverse: false,
+                enableInfiniteScroll: true,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(seconds: 1),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                scrollDirection: Axis.horizontal,
+              )),
+          const SizedBox(height: 20),
+          Text(
+            'Categories',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 100,
+            child: ListView.separated(
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => categoryItem(),
+                separatorBuilder: (context, index) => SizedBox(
+                      width: 10,
+                    ),
+                itemCount: 10),
+          ),
+          Text(
+            'New Products',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          GridView.count(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 1,
+            crossAxisCount: 2,
+            childAspectRatio: 1 / 1.5,
+            children: List.generate(20,
+                (index) => builderproduct()),
+          )
+        ],
+      ));
 
-  Widget builderproduct(ProductModel model) => Padding(
+  Widget builderproduct() => Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(
             alignment: AlignmentDirectional.bottomStart,
             children: [
               Image(
-                image: NetworkImage('${model.image}'),
+                image: AssetImage('images/onBoard_1.jpg'),
                 width: double.infinity,
                 height: 200,
                 fit: BoxFit.cover,
               ),
-              if (model.discount != 0)
+              // if (model.discount != 0)
                 Container(
                   color: Colors.redAccent,
                   child: Text(
@@ -113,7 +119,7 @@ class ProductScreen extends StatelessWidget {
             ],
           ),
           Text(
-            model.name!,
+            'Phone',
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(height: 1.5),
@@ -122,15 +128,15 @@ class ProductScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                '${model.price!}',
+                '5000',
                 style: TextStyle(color: Colors.blue),
               ),
               SizedBox(
                 width: 10,
               ),
-              if (model.discount != 0)
+              // if (model.discount != 0)
                 Text(
-                  '${model.oldPrice!}',
+                  '4400',
                   style: TextStyle(
                       color: Colors.grey,
                       decoration: TextDecoration.lineThrough),
@@ -148,12 +154,14 @@ class ProductScreen extends StatelessWidget {
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: [
-            Image(image: NetworkImage('https://student.valuxapps.com/storage/uploads/categories/16301438353uCFh.29118.jpg')),
+            Image(
+                image: AssetImage('images/onBoard_1.jpg'),),
             Container(
               color: Colors.black12.withOpacity(0.5),
               width: 100,
-              child: Text(''),
+              child: Text('phone'),
             ),
+
           ],
         ),
       );
